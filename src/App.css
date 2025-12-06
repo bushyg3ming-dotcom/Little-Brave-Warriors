@@ -16,26 +16,9 @@
   overflow: hidden;
 }
 
-.App-header::before {
-  content: "🖍️";
-  position: absolute;
-  top: 10%;
-  left: 15%;
-  opacity: 0.15;
-  font-size: 4rem;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.App-header::after {
-  content: "⚽";
-  position: absolute;
-  top: 30%;
-  right: 20%;
-  opacity: 0.15;
-  font-size: 3rem;
-  pointer-events: none;
-  z-index: 0;
+.App-header img {
+  z-index: 1;
+  animation: rock 2s ease-in-out infinite;
 }
 
 .App-header h1 {
@@ -48,12 +31,6 @@
   z-index: 1;
   color: #4caf50;
   font-weight: bold;
-}
-
-.rocking-horse {
-  font-size: 4rem;
-  animation: rock 2s ease-in-out infinite;
-  z-index: 1;
 }
 
 @keyframes rock {
