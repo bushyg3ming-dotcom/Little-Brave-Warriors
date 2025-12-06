@@ -14,7 +14,8 @@ function Home() {
           <Link to="/announcements" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Announcements</Link>
           <Link to="/events" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Events</Link>
           <Link to="/teachers" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Teachers</Link>
-          <Link to="/streaming" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Streaming</Link>
+          <Link to="/streaming" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Streaming</Link>
+          <Link to="/contact" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Contact</Link>
         </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
