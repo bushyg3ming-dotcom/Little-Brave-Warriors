@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
 import Announcements from './Announcements';
 import Events from './Events';
 import Teachers from './Teachers';
@@ -9,10 +10,74 @@ import Activities from './Activities';
 import Registration from './Registration';
 
 function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="App">
       <header className="App-header">
-        <nav style={{position: 'absolute', top: '10px', left: '10px', right: '10px', display: 'flex', justifyContent: 'space-around'}}>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            backgroundColor: '#ff5722',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '8px',
+            cursor: 'pointer',
+            fontSize: '1.2rem',
+            zIndex: 1000
+          }}
+        >
+          ☰
+        </button>
+        <nav style={{
+          position: 'absolute',
+          top: '60px',
+          right: '10px',
+          display: menuOpen ? 'flex' : 'none',
+          flexDirection: 'column',
+          gap: '10px',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          padding: '10px',
+          borderRadius: '5px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+          zIndex: 999
+        }}>
+          <Link to="/announcements" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Announcements</button>
+          </Link>
+          <Link to="/events" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Events</button>
+          </Link>
+          <Link to="/teachers" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Teachers</button>
+          </Link>
+          <Link to="/streaming" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Streaming</button>
+          </Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Contact</button>
+          </Link>
+          <Link to="/activities" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Activities</button>
+          </Link>
+          <Link to="/registration" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Registration</button>
+          </Link>
+        </nav>
+        {/* Desktop Navigation */}
+        <nav style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          right: '60px',
+          display: 'flex',
+          justifyContent: 'space-around',
+          '@media (max-width: 768px)': { display: 'none' }
+        }}>
           <Link to="/announcements">
             <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Announcements</button>
           </Link>
