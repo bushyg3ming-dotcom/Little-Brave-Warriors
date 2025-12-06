@@ -8,6 +8,7 @@ import Streaming from './Streaming';
 import Contact from './Contact';
 import Activities from './Activities';
 import Registration from './Registration';
+import AdminDashboard from './AdminDashboard';
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -67,6 +68,9 @@ function Home() {
           <Link to="/registration" onClick={() => setMenuOpen(false)}>
             <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Registration</button>
           </Link>
+          <Link to="/admin-dashboard" onClick={() => setMenuOpen(false)}>
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', width: '100%'}}>Admin</button>
+          </Link>
         </nav>
         {/* Desktop Navigation */}
         <nav className="desktop-nav" style={{
@@ -97,6 +101,9 @@ function Home() {
           </Link>
           <Link to="/registration">
             <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Registration</button>
+          </Link>
+          <Link to="/admin-dashboard">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Admin</button>
           </Link>
         </nav>
         <div className="background-emojis">
@@ -137,6 +144,7 @@ function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/activities" element={<Activities />} />
       <Route path="/registration" element={<Registration />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
     </Routes>
   );
 }
