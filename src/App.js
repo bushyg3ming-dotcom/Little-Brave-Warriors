@@ -41,6 +41,26 @@ function Home() {
         <p>
           We provide quality childcare services for children aged 2-5 years.
         </p>
+        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', marginTop: '30px'}}>
+          <Link to="/announcements">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Announcements</button>
+          </Link>
+          <Link to="/events">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Events</button>
+          </Link>
+          <Link to="/teachers">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Teachers</button>
+          </Link>
+          <Link to="/streaming">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Streaming</button>
+          </Link>
+          <Link to="/contact">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Contact</button>
+          </Link>
+          <Link to="/activities">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Activities</button>
+          </Link>
+        </div>
       </header>
     </div>
   );
