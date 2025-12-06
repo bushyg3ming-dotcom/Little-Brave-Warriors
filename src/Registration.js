@@ -13,12 +13,24 @@ function Registration() {
     emergencyContact: '',
     medicalInfo: ''
   });
+  const [documents, setDocuments] = useState({
+    parentId: null,
+    childBirthCertificate: null
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
+    });
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setDocuments({
+      ...documents,
+      [name]: files[0]
     });
   };
 
