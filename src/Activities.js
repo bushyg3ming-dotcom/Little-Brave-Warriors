@@ -1,13 +1,11 @@
 import './App.css';
 import { Link } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function Activities() {
   const [mathAnswer, setMathAnswer] = useState('');
   const [mathResult, setMathResult] = useState('');
   const [currentProblem, setCurrentProblem] = useState({ num1: 3, num2: 4, answer: 7 });
-  const canvasRef = useRef(null);
-  const [draggedPiece, setDraggedPiece] = useState(null);
   const [placedPieces, setPlacedPieces] = useState([]);
 
   const generateNewProblem = () => {
@@ -34,49 +32,7 @@ function Activities() {
     }
   };
 
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  };
 
-  const startPuzzle = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Define dots for a simple house shape
-    const houseDots = [
-      { x: 50, y: 200, num: 1 },   // bottom left
-      { x: 250, y: 200, num: 2 },  // bottom right
-      { x: 250, y: 100, num: 3 },  // top right
-      { x: 150, y: 50, num: 4 },   // roof peak
-      { x: 50, y: 100, num: 5 },   // top left
-      { x: 50, y: 200, num: 6 }    // back to start
-    ];
-
-    setDots(houseDots);
-    setCurrentDot(0);
-
-    // Draw dots and numbers
-    ctx.fillStyle = 'black';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-
-    houseDots.forEach(dot => {
-      // Draw dot
-      ctx.beginPath();
-      ctx.arc(dot.x, dot.y, 8, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Draw number
-      ctx.fillStyle = 'white';
-      ctx.fillText(dot.num.toString(), dot.x, dot.y + 5);
-      ctx.fillStyle = 'black';
-    });
-  };
 
   return (
     <div className="App">
@@ -262,7 +218,6 @@ function Activities() {
               <button
                 onClick={() => {
                   setPlacedPieces([]);
-                  setDraggedPiece(null);
                 }}
                 style={{background: '#f44336', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}
               >
