@@ -11,13 +11,25 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <nav style={{position: 'absolute', top: '10px', right: '10px'}}>
-          <Link to="/announcements" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Announcements</Link>
-          <Link to="/events" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Events</Link>
-          <Link to="/teachers" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Teachers</Link>
-          <Link to="/streaming" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Streaming</Link>
-          <Link to="/contact" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Contact</Link>
-          <Link to="/activities" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Activities</Link>
+        <nav style={{position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '10px'}}>
+          <Link to="/announcements">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Announcements</button>
+          </Link>
+          <Link to="/events">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Events</button>
+          </Link>
+          <Link to="/teachers">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Teachers</button>
+          </Link>
+          <Link to="/streaming">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Streaming</button>
+          </Link>
+          <Link to="/contact">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Contact</button>
+          </Link>
+          <Link to="/activities">
+            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Activities</button>
+          </Link>
         </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
@@ -41,26 +53,6 @@ function Home() {
         <p>
           We provide quality childcare services for children aged 2-5 years.
         </p>
-        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', marginTop: '30px'}}>
-          <Link to="/announcements">
-            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Announcements</button>
-          </Link>
-          <Link to="/events">
-            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Events</button>
-          </Link>
-          <Link to="/teachers">
-            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Teachers</button>
-          </Link>
-          <Link to="/streaming">
-            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Streaming</button>
-          </Link>
-          <Link to="/contact">
-            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Contact</button>
-          </Link>
-          <Link to="/activities">
-            <button style={{backgroundColor: '#ff5722', color: 'white', padding: '15px 30px', border: 'none', borderRadius: '10px', fontSize: '1.2rem', cursor: 'pointer'}}>Activities</button>
-          </Link>
-        </div>
       </header>
     </div>
   );
