@@ -33,7 +33,7 @@ function Home() {
         >
           ☰
         </button>
-        <nav style={{
+        <nav className="mobile-nav" style={{
           position: 'absolute',
           top: '60px',
           right: '10px',
@@ -69,14 +69,13 @@ function Home() {
           </Link>
         </nav>
         {/* Desktop Navigation */}
-        <nav style={{
+        <nav className="desktop-nav" style={{
           position: 'absolute',
           top: '10px',
           left: '10px',
           right: '60px',
           display: 'flex',
-          justifyContent: 'space-around',
-          '@media (max-width: 768px)': { display: 'none' }
+          justifyContent: 'space-around'
         }}>
           <Link to="/announcements">
             <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Announcements</button>
