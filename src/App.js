@@ -4,6 +4,7 @@ import Announcements from './Announcements';
 import Events from './Events';
 import Teachers from './Teachers';
 import Streaming from './Streaming';
+import Contact from './Contact';
 
 function Home() {
   return (
