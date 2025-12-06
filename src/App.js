@@ -4,6 +4,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="rocking-horse">🐴</div>
         <h1>Welcome to Little Brave Warriors Creche</h1>
         <p>
           Nurturing young minds in a safe, fun, and educational environment.
