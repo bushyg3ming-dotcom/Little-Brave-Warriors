@@ -12,7 +12,7 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <nav style={{position: 'absolute', top: '10px', right: '10px', display: 'flex', gap: '10px'}}>
+        <nav style={{position: 'absolute', top: '10px', left: '10px', right: '10px', display: 'flex', justifyContent: 'space-around'}}>
           <Link to="/announcements">
             <button style={{backgroundColor: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Announcements</button>
           </Link>
