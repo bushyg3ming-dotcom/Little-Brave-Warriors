@@ -37,3 +37,21 @@
   0%, 100% { transform: rotate(-5deg); }
   50% { transform: rotate(5deg); }
 }
+
+/* Navigation styles */
+.desktop-nav {
+  display: flex !important;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-nav {
+    display: flex;
+  }
+}
