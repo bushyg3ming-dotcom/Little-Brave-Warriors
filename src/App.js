@@ -8,7 +8,8 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <nav style={{position: 'absolute', top: '10px', right: '10px'}}>
-          <Link to="/announcements" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Announcements</Link>
+          <Link to="/announcements" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Announcements</Link>
+          <Link to="/events" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Events</Link>
         </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
