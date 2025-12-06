@@ -1,18 +1,12 @@
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
-import Announcements from './Announcements';
-import Events from './Events';
-import Teachers from './Teachers';
-import Streaming from './Streaming';
+import { Link } from 'react-router-dom';
 
-function Home() {
+function Streaming() {
   return (
     <div className="App">
       <header className="App-header">
         <nav style={{position: 'absolute', top: '10px', right: '10px'}}>
-          <Link to="/announcements" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Announcements</Link>
-          <Link to="/events" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Events</Link>
-          <Link to="/teachers" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Teachers</Link>
+          <Link to="/" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Home</Link>
         </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
@@ -29,27 +23,27 @@ function Home() {
           <span style={{position: 'absolute', top: '75%', left: '30%', fontSize: '4rem', opacity: 0.2}}>3</span>
         </div>
         <img src="/rocking horse.jpg" alt="Rocking Horse" width="120" height="120" />
-        <h1>Welcome to Little Brave Warriors Creche</h1>
-        <p>
-          Nurturing young minds in a safe, fun, and educational environment.
-        </p>
-        <p>
-          We provide quality childcare services for children aged 2-5 years.
-        </p>
+        <h1>Live Streaming</h1>
+        <div style={{maxWidth: '1000px', textAlign: 'center'}}>
+          <p>Join us for live events and activities from Little Brave Warriors Creche! 📺🎥</p>
+          <div style={{marginTop: '30px', background: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
+            <h2>Live Stream</h2>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0"
+              title="Little Brave Warriors Live Stream"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{maxWidth: '100%', borderRadius: '10px'}}
+            ></iframe>
+            <p style={{marginTop: '10px'}}>🎬 Tune in for our exciting live sessions! Replace this embed with your actual YouTube Live URL when streaming.</p>
+          </div>
+        </div>
       </header>
     </div>
   );
 }
 
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/announcements" element={<Announcements />} />
-      <Route path="/events" element={<Events />} />
-      <Route path="/teachers" element={<Teachers />} />
-    </Routes>
-  );
-}
-
-export default App;
+export default Streaming;
