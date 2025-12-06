@@ -7,6 +7,49 @@ function Activities() {
   const [mathResult, setMathResult] = useState('');
   const [currentProblem, setCurrentProblem] = useState({ num1: 3, num2: 4, answer: 7 });
   const [placedPieces, setPlacedPieces] = useState([]);
+  const [currentPuzzle, setCurrentPuzzle] = useState(0);
+
+  const puzzles = [
+    {
+      name: 'Smiley Face',
+      pieces: [
+        { id: 'eye1', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
+        { id: 'eye2', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
+        { id: 'mouth', style: { width: '50px', height: '30px', backgroundColor: '#333', borderRadius: '25px', border: '2px solid #000' } }
+      ],
+      zones: [
+        { id: 'eye1', style: { position: 'absolute', top: '25px', left: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
+        { id: 'eye2', style: { position: 'absolute', top: '25px', right: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
+        { id: 'mouth', style: { position: 'absolute', bottom: '25px', left: '75px', width: '50px', height: '30px', border: 'none', borderRadius: '25px', backgroundColor: '#333' } }
+      ]
+    },
+    {
+      name: 'Sad Face',
+      pieces: [
+        { id: 'eye1', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
+        { id: 'eye2', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
+        { id: 'mouth', style: { width: '50px', height: '30px', backgroundColor: '#333', borderRadius: '25px 25px 0 0', border: '2px solid #000', borderBottom: 'none' } }
+      ],
+      zones: [
+        { id: 'eye1', style: { position: 'absolute', top: '25px', left: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
+        { id: 'eye2', style: { position: 'absolute', top: '25px', right: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
+        { id: 'mouth', style: { position: 'absolute', bottom: '25px', left: '75px', width: '50px', height: '30px', border: 'none', borderRadius: '25px 25px 0 0', backgroundColor: '#333' } }
+      ]
+    },
+    {
+      name: 'Surprised Face',
+      pieces: [
+        { id: 'eye1', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
+        { id: 'eye2', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
+        { id: 'mouth', style: { width: '30px', height: '30px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } }
+      ],
+      zones: [
+        { id: 'eye1', style: { position: 'absolute', top: '25px', left: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
+        { id: 'eye2', style: { position: 'absolute', top: '25px', right: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
+        { id: 'mouth', style: { position: 'absolute', bottom: '25px', left: '85px', width: '30px', height: '30px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } }
+      ]
+    }
+  ];
 
   const generateNewProblem = () => {
     const num1 = Math.floor(Math.random() * 5) + 1; // 1-5
@@ -90,7 +133,7 @@ function Activities() {
           {/* Puzzle Section */}
           <div style={{background: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
             <h2>🧩 Jigsaw Puzzle!</h2>
-            <p>Drag the puzzle pieces into the correct positions to complete the smiley face!</p>
+            <p>Drag the puzzle pieces into the correct positions to complete the {puzzles[currentPuzzle].name.toLowerCase()}!</p>
 
             {/* Puzzle Area */}
             <div style={{display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px'}}>
@@ -116,7 +159,10 @@ function Activities() {
                       const newPlaced = [...placedPieces, 'eye1'];
                       setPlacedPieces(newPlaced);
                       if (newPlaced.length === 3) {
-                        setTimeout(() => setPlacedPieces([]), 3000);
+                        setTimeout(() => {
+                          setPlacedPieces([]);
+                          setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
+                        }, 3000);
                       }
                     }
                   }}
@@ -141,7 +187,10 @@ function Activities() {
                       const newPlaced = [...placedPieces, 'eye2'];
                       setPlacedPieces(newPlaced);
                       if (newPlaced.length === 3) {
-                        setTimeout(() => setPlacedPieces([]), 3000);
+                        setTimeout(() => {
+                          setPlacedPieces([]);
+                          setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
+                        }, 3000);
                       }
                     }
                   }}
@@ -166,7 +215,10 @@ function Activities() {
                       const newPlaced = [...placedPieces, 'mouth'];
                       setPlacedPieces(newPlaced);
                       if (newPlaced.length === 3) {
-                        setTimeout(() => setPlacedPieces([]), 3000);
+                        setTimeout(() => {
+                          setPlacedPieces([]);
+                          setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
+                        }, 3000);
                       }
                     }
                   }}
@@ -230,6 +282,7 @@ function Activities() {
               <button
                 onClick={() => {
                   setPlacedPieces([]);
+                  setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
                 }}
                 style={{background: '#f44336', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}
               >
