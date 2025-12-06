@@ -1,9 +1,13 @@
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function Announcements() {
   return (
     <div className="App">
       <header className="App-header">
+        <nav style={{position: 'absolute', top: '10px', right: '10px'}}>
+          <Link to="/" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Home</Link>
+        </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
           <span style={{position: 'absolute', top: '30%', right: '20%', fontSize: '3rem', opacity: 0.2}}>⚽</span>
