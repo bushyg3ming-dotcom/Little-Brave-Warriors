@@ -162,8 +162,12 @@ function Activities() {
                   onDrop={(e) => {
                     e.preventDefault();
                     const pieceId = e.dataTransfer.getData('piece');
-                    if (pieceId === 'mouth') {
-                      setPlacedPieces([...placedPieces, 'mouth']);
+                    if (pieceId === 'mouth' && !placedPieces.includes('mouth')) {
+                      const newPlaced = [...placedPieces, 'mouth'];
+                      setPlacedPieces(newPlaced);
+                      if (newPlaced.length === 3) {
+                        setTimeout(() => setPlacedPieces([]), 3000);
+                      }
                     }
                   }}
                 ></div>
