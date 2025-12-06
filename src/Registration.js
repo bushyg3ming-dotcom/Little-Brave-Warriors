@@ -183,6 +183,30 @@ function Registration() {
               style={{width: '100%', padding: '8px', fontSize: '1rem'}}
             />
           </div>
+          <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Parent's Identity Document:</label>
+            <input
+              type="file"
+              name="parentId"
+              onChange={handleFileChange}
+              accept=".pdf,.jpg,.jpeg,.png"
+              required
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+            {documents.parentId && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.parentId.name}</p>}
+          </div>
+          <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Child's Birth Certificate:</label>
+            <input
+              type="file"
+              name="childBirthCertificate"
+              onChange={handleFileChange}
+              accept=".pdf,.jpg,.jpeg,.png"
+              required
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+            {documents.childBirthCertificate && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.childBirthCertificate.name}</p>}
+          </div>
           <button type="submit" style={{backgroundColor: '#ff5722', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Submit Registration</button>
         </form>
       </header>
