@@ -7,8 +7,8 @@ function Activities() {
   const [mathResult, setMathResult] = useState('');
   const [currentProblem, setCurrentProblem] = useState({ num1: 3, num2: 4, answer: 7 });
   const canvasRef = useRef(null);
-  const [currentDot, setCurrentDot] = useState(0);
-  const [dots, setDots] = useState([]);
+  const [draggedPiece, setDraggedPiece] = useState(null);
+  const [placedPieces, setPlacedPieces] = useState([]);
 
   const generateNewProblem = () => {
     const num1 = Math.floor(Math.random() * 5) + 1; // 1-5
@@ -133,60 +133,141 @@ function Activities() {
 
           {/* Puzzle Section */}
           <div style={{background: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
-            <h2>🧩 Connect the Dots Puzzle!</h2>
-            <p>Click "Start Puzzle" to begin, then click on the dots in order from 1 to 6 to draw a house!</p>
-            <canvas
-              ref={canvasRef}
-              width="300"
-              height="250"
-              style={{border: '2px solid #333', borderRadius: '5px', cursor: 'pointer', display: 'block', margin: '0 auto'}}
-              onMouseDown={(e) => {
-                if (dots.length === 0) return;
+            <h2>🧩 Jigsaw Puzzle!</h2>
+            <p>Drag the puzzle pieces into the correct positions to complete the smiley face!</p>
 
-                const canvas = canvasRef.current;
-                const ctx = canvas.getContext('2d');
-                const rect = canvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+            {/* Puzzle Area */}
+            <div style={{display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px'}}>
+              {/* Target Area */}
+              <div style={{width: '200px', height: '200px', border: '2px dashed #333', borderRadius: '10px', position: 'relative', backgroundColor: '#f9f9f9'}}>
+                <div
+                  id="drop-zone-1"
+                  style={{
+                    position: 'absolute',
+                    top: '25px',
+                    left: '25px',
+                    width: '50px',
+                    height: '50px',
+                    border: placedPieces.includes('eye1') ? 'none' : '2px solid #ccc',
+                    borderRadius: '50%',
+                    backgroundColor: placedPieces.includes('eye1') ? '#333' : 'transparent'
+                  }}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    const pieceId = e.dataTransfer.getData('piece');
+                    if (pieceId === 'eye1') {
+                      setPlacedPieces([...placedPieces, 'eye1']);
+                    }
+                  }}
+                ></div>
+                <div
+                  id="drop-zone-2"
+                  style={{
+                    position: 'absolute',
+                    top: '25px',
+                    right: '25px',
+                    width: '50px',
+                    height: '50px',
+                    border: placedPieces.includes('eye2') ? 'none' : '2px solid #ccc',
+                    borderRadius: '50%',
+                    backgroundColor: placedPieces.includes('eye2') ? '#333' : 'transparent'
+                  }}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    const pieceId = e.dataTransfer.getData('piece');
+                    if (pieceId === 'eye2') {
+                      setPlacedPieces([...placedPieces, 'eye2']);
+                    }
+                  }}
+                ></div>
+                <div
+                  id="drop-zone-3"
+                  style={{
+                    position: 'absolute',
+                    bottom: '25px',
+                    left: '75px',
+                    width: '50px',
+                    height: '30px',
+                    border: placedPieces.includes('mouth') ? 'none' : '2px solid #ccc',
+                    borderRadius: '25px',
+                    backgroundColor: placedPieces.includes('mouth') ? '#333' : 'transparent'
+                  }}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    const pieceId = e.dataTransfer.getData('piece');
+                    if (pieceId === 'mouth') {
+                      setPlacedPieces([...placedPieces, 'mouth']);
+                    }
+                  }}
+                ></div>
+              </div>
 
-                // Check if clicked on the next dot
-                const nextDot = dots[currentDot];
-                const distance = Math.sqrt((x - nextDot.x) ** 2 + (y - nextDot.y) ** 2);
+              {/* Puzzle Pieces */}
+              <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                {!placedPieces.includes('eye1') && (
+                  <div
+                    draggable
+                    onDragStart={(e) => e.dataTransfer.setData('piece', 'eye1')}
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      backgroundColor: '#333',
+                      borderRadius: '50%',
+                      cursor: 'grab',
+                      border: '2px solid #000'
+                    }}
+                  ></div>
+                )}
+                {!placedPieces.includes('eye2') && (
+                  <div
+                    draggable
+                    onDragStart={(e) => e.dataTransfer.setData('piece', 'eye2')}
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      backgroundColor: '#333',
+                      borderRadius: '50%',
+                      cursor: 'grab',
+                      border: '2px solid #000'
+                    }}
+                  ></div>
+                )}
+                {!placedPieces.includes('mouth') && (
+                  <div
+                    draggable
+                    onDragStart={(e) => e.dataTransfer.setData('piece', 'mouth')}
+                    style={{
+                      width: '50px',
+                      height: '30px',
+                      backgroundColor: '#333',
+                      borderRadius: '25px',
+                      cursor: 'grab',
+                      border: '2px solid #000'
+                    }}
+                  ></div>
+                )}
+              </div>
+            </div>
 
-                if (distance < 15) { // Within click radius
-                  // Draw line from previous dot if not first
-                  if (currentDot > 0) {
-                    const prevDot = dots[currentDot - 1];
-                    ctx.strokeStyle = 'blue';
-                    ctx.lineWidth = 3;
-                    ctx.beginPath();
-                    ctx.moveTo(prevDot.x, prevDot.y);
-                    ctx.lineTo(nextDot.x, nextDot.y);
-                    ctx.stroke();
-                  }
+            {placedPieces.length === 3 && (
+              <div style={{textAlign: 'center', marginTop: '20px'}}>
+                <p style={{fontSize: '1.5rem', color: '#4CAF50', fontWeight: 'bold'}}>🎉 Puzzle Complete! Great Job! 🎉</p>
+              </div>
+            )}
 
-                  // Mark dot as completed
-                  ctx.fillStyle = 'green';
-                  ctx.beginPath();
-                  ctx.arc(nextDot.x, nextDot.y, 8, 0, Math.PI * 2);
-                  ctx.fill();
-
-                  // Move to next dot
-                  if (currentDot < dots.length - 1) {
-                    setCurrentDot(currentDot + 1);
-                  } else {
-                    // Puzzle complete!
-                    ctx.fillStyle = 'red';
-                    ctx.font = '20px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText('🎉 Great Job! 🎉', 150, 30);
-                  }
-                }
-              }}
-            ></canvas>
-            <div style={{marginTop: '10px'}}>
-              <button onClick={startPuzzle} style={{background: '#4CAF50', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px'}}>Start Puzzle</button>
-              <button onClick={clearCanvas} style={{background: '#f44336', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}>Clear</button>
+            <div style={{marginTop: '10px', textAlign: 'center'}}>
+              <button
+                onClick={() => {
+                  setPlacedPieces([]);
+                  setDraggedPiece(null);
+                }}
+                style={{background: '#f44336', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}
+              >
+                Reset Puzzle
+              </button>
             </div>
           </div>
 
