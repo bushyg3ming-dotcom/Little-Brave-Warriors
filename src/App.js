@@ -1,9 +1,14 @@
 import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import Announcements from './Announcements';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <header className="App-header">
+        <nav style={{position: 'absolute', top: '10px', right: '10px'}}>
+          <Link to="/announcements" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Announcements</Link>
+        </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
           <span style={{position: 'absolute', top: '30%', right: '20%', fontSize: '3rem', opacity: 0.2}}>⚽</span>
@@ -28,6 +33,15 @@ function App() {
         </p>
       </header>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/announcements" element={<Announcements />} />
+    </Routes>
   );
 }
 
