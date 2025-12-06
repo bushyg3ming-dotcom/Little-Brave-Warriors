@@ -6,50 +6,35 @@ function Activities() {
   const [mathAnswer, setMathAnswer] = useState('');
   const [mathResult, setMathResult] = useState('');
   const [currentProblem, setCurrentProblem] = useState({ num1: 3, num2: 4, answer: 7 });
-  const [placedPieces, setPlacedPieces] = useState([]);
-  const [currentPuzzle, setCurrentPuzzle] = useState(0);
+  const [animalGuess, setAnimalGuess] = useState('');
+  const [animalResult, setAnimalResult] = useState('');
+  const [currentAnimal, setCurrentAnimal] = useState({ emoji: '🐶', name: 'dog' });
 
-  const puzzles = [
-    {
-      name: 'Smiley Face',
-      pieces: [
-        { id: 'eye1', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
-        { id: 'eye2', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
-        { id: 'mouth', style: { width: '50px', height: '30px', backgroundColor: '#333', borderRadius: '25px', border: '2px solid #000' } }
-      ],
-      zones: [
-        { id: 'eye1', style: { position: 'absolute', top: '25px', left: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
-        { id: 'eye2', style: { position: 'absolute', top: '25px', right: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
-        { id: 'mouth', style: { position: 'absolute', bottom: '25px', left: '75px', width: '50px', height: '30px', border: 'none', borderRadius: '25px', backgroundColor: '#333' } }
-      ]
-    },
-    {
-      name: 'Sad Face',
-      pieces: [
-        { id: 'eye1', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
-        { id: 'eye2', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
-        { id: 'mouth', style: { width: '50px', height: '30px', backgroundColor: '#333', borderRadius: '25px 25px 0 0', border: '2px solid #000', borderBottom: 'none' } }
-      ],
-      zones: [
-        { id: 'eye1', style: { position: 'absolute', top: '25px', left: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
-        { id: 'eye2', style: { position: 'absolute', top: '25px', right: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
-        { id: 'mouth', style: { position: 'absolute', bottom: '25px', left: '75px', width: '50px', height: '30px', border: 'none', borderRadius: '25px 25px 0 0', backgroundColor: '#333' } }
-      ]
-    },
-    {
-      name: 'Surprised Face',
-      pieces: [
-        { id: 'eye1', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
-        { id: 'eye2', style: { width: '50px', height: '50px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } },
-        { id: 'mouth', style: { width: '30px', height: '30px', backgroundColor: '#333', borderRadius: '50%', border: '2px solid #000' } }
-      ],
-      zones: [
-        { id: 'eye1', style: { position: 'absolute', top: '25px', left: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
-        { id: 'eye2', style: { position: 'absolute', top: '25px', right: '25px', width: '50px', height: '50px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } },
-        { id: 'mouth', style: { position: 'absolute', bottom: '25px', left: '85px', width: '30px', height: '30px', border: 'none', borderRadius: '50%', backgroundColor: '#333' } }
-      ]
-    }
+  const animals = [
+    { emoji: '🐶', name: 'dog' },
+    { emoji: '🐱', name: 'cat' },
+    { emoji: '🐭', name: 'mouse' },
+    { emoji: '🐹', name: 'hamster' },
+    { emoji: '🐰', name: 'rabbit' },
+    { emoji: '🦊', name: 'fox' },
+    { emoji: '🐻', name: 'bear' },
+    { emoji: '🐼', name: 'panda' },
+    { emoji: '🐨', name: 'koala' },
+    { emoji: '🐯', name: 'tiger' },
+    { emoji: '🦁', name: 'lion' },
+    { emoji: '🐸', name: 'frog' },
+    { emoji: '🐵', name: 'monkey' },
+    { emoji: '🐧', name: 'penguin' },
+    { emoji: '🐦', name: 'bird' },
+    { emoji: '🐺', name: 'wolf' }
   ];
+
+  const generateNewAnimal = () => {
+    const randomIndex = Math.floor(Math.random() * animals.length);
+    setCurrentAnimal(animals[randomIndex]);
+    setAnimalGuess('');
+    setAnimalResult('');
+  };
 
   const generateNewProblem = () => {
     const num1 = Math.floor(Math.random() * 5) + 1; // 1-5
@@ -130,165 +115,29 @@ function Activities() {
             </div>
           </div>
 
-          {/* Puzzle Section */}
+          {/* Animal Guessing Game */}
           <div style={{background: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
-            <h2>🧩 Jigsaw Puzzle!</h2>
-            <p>Drag the puzzle pieces into the correct positions to complete the {puzzles[currentPuzzle].name.toLowerCase()}!</p>
-
-            {/* Puzzle Area */}
-            <div style={{display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px'}}>
-              {/* Target Area */}
-              <div style={{width: '200px', height: '200px', border: '2px dashed #333', borderRadius: '10px', position: 'relative', backgroundColor: '#f9f9f9'}}>
-                <div
-                  id="drop-zone-1"
-                  style={{
-                    position: 'absolute',
-                    top: '25px',
-                    left: '25px',
-                    width: '50px',
-                    height: '50px',
-                    border: placedPieces.includes('eye1') ? 'none' : '2px solid #ccc',
-                    borderRadius: '50%',
-                    backgroundColor: placedPieces.includes('eye1') ? '#333' : 'transparent'
-                  }}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    const pieceId = e.dataTransfer.getData('piece');
-                    if (pieceId === 'eye1' && !placedPieces.includes('eye1')) {
-                      const newPlaced = [...placedPieces, 'eye1'];
-                      setPlacedPieces(newPlaced);
-                      if (newPlaced.length === 3) {
-                        setTimeout(() => {
-                          setPlacedPieces([]);
-                          setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
-                        }, 3000);
-                      }
-                    }
-                  }}
-                ></div>
-                <div
-                  id="drop-zone-2"
-                  style={{
-                    position: 'absolute',
-                    top: '25px',
-                    right: '25px',
-                    width: '50px',
-                    height: '50px',
-                    border: placedPieces.includes('eye2') ? 'none' : '2px solid #ccc',
-                    borderRadius: '50%',
-                    backgroundColor: placedPieces.includes('eye2') ? '#333' : 'transparent'
-                  }}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    const pieceId = e.dataTransfer.getData('piece');
-                    if (pieceId === 'eye2' && !placedPieces.includes('eye2')) {
-                      const newPlaced = [...placedPieces, 'eye2'];
-                      setPlacedPieces(newPlaced);
-                      if (newPlaced.length === 3) {
-                        setTimeout(() => {
-                          setPlacedPieces([]);
-                          setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
-                        }, 3000);
-                      }
-                    }
-                  }}
-                ></div>
-                <div
-                  id="drop-zone-3"
-                  style={{
-                    position: 'absolute',
-                    bottom: '25px',
-                    left: '75px',
-                    width: '50px',
-                    height: '30px',
-                    border: placedPieces.includes('mouth') ? 'none' : '2px solid #ccc',
-                    borderRadius: '25px',
-                    backgroundColor: placedPieces.includes('mouth') ? '#333' : 'transparent'
-                  }}
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    const pieceId = e.dataTransfer.getData('piece');
-                    if (pieceId === 'mouth' && !placedPieces.includes('mouth')) {
-                      const newPlaced = [...placedPieces, 'mouth'];
-                      setPlacedPieces(newPlaced);
-                      if (newPlaced.length === 3) {
-                        setTimeout(() => {
-                          setPlacedPieces([]);
-                          setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
-                        }, 3000);
-                      }
-                    }
-                  }}
-                ></div>
-              </div>
-
-              {/* Puzzle Pieces */}
-              <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
-                {!placedPieces.includes('eye1') && (
-                  <div
-                    draggable
-                    onDragStart={(e) => e.dataTransfer.setData('piece', 'eye1')}
-                    style={{
-                      width: '50px',
-                      height: '50px',
-                      backgroundColor: '#333',
-                      borderRadius: '50%',
-                      cursor: 'grab',
-                      border: '2px solid #000'
-                    }}
-                  ></div>
-                )}
-                {!placedPieces.includes('eye2') && (
-                  <div
-                    draggable
-                    onDragStart={(e) => e.dataTransfer.setData('piece', 'eye2')}
-                    style={{
-                      width: '50px',
-                      height: '50px',
-                      backgroundColor: '#333',
-                      borderRadius: '50%',
-                      cursor: 'grab',
-                      border: '2px solid #000'
-                    }}
-                  ></div>
-                )}
-                {!placedPieces.includes('mouth') && (
-                  <div
-                    draggable
-                    onDragStart={(e) => e.dataTransfer.setData('piece', 'mouth')}
-                    style={{
-                      width: '50px',
-                      height: '30px',
-                      backgroundColor: '#333',
-                      borderRadius: '25px',
-                      cursor: 'grab',
-                      border: '2px solid #000'
-                    }}
-                  ></div>
-                )}
-              </div>
-            </div>
-
-            {placedPieces.length === 3 && (
-              <div style={{textAlign: 'center', marginTop: '20px'}}>
-                <p style={{fontSize: '1.5rem', color: '#4CAF50', fontWeight: 'bold'}}>🎉 Puzzle Complete! Great Job! 🎉</p>
-              </div>
-            )}
-
-            <div style={{marginTop: '10px', textAlign: 'center'}}>
-              <button
-                onClick={() => {
-                  setPlacedPieces([]);
-                  setCurrentPuzzle(Math.floor(Math.random() * puzzles.length));
-                }}
-                style={{background: '#f44336', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}
-              >
-                Reset Puzzle
-              </button>
-            </div>
+            <h2>🐾 Guess the Animal!</h2>
+            <p>Look at this animal and type its name!</p>
+            <p style={{fontSize: '4rem', textAlign: 'center'}}>{currentAnimal.emoji}</p>
+            <input
+              type="text"
+              value={animalGuess}
+              onChange={(e) => setAnimalGuess(e.target.value.toLowerCase())}
+              style={{padding: '8px', fontSize: '1rem', marginRight: '10px'}}
+              placeholder="Animal name"
+            />
+            <button onClick={() => {
+              if (animalGuess === currentAnimal.name) {
+                setAnimalResult(`🎉 Correct! It's a ${currentAnimal.name}!`);
+                setTimeout(() => {
+                  generateNewAnimal();
+                }, 2000);
+              } else {
+                setAnimalResult('❌ Try again! Hint: It starts with a letter!');
+              }
+            }} style={{background: '#ff5722', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}>Guess</button>
+            <p style={{marginTop: '10px', fontWeight: 'bold'}}>{animalResult}</p>
           </div>
 
         </div>
