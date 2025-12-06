@@ -13,9 +13,13 @@ function Registration() {
     emergencyContact: '',
     medicalInfo: ''
   });
+  const [registrationType, setRegistrationType] = useState('child');
   const [documents, setDocuments] = useState({
     parentId: null,
-    childBirthCertificate: null
+    childBirthCertificate: null,
+    teacherId: null,
+    teacherQualifications: null,
+    adminId: null
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -92,121 +96,269 @@ function Registration() {
           <span style={{position: 'absolute', top: '35%', right: '5%', fontSize: '3rem', opacity: 0.2}}>2</span>
           <span style={{position: 'absolute', top: '75%', left: '30%', fontSize: '4rem', opacity: 0.2}}>3</span>
         </div>
-        <h1>Child Registration</h1>
+        <h1>Registration</h1>
+        <div style={{maxWidth: '600px', margin: '0 auto', marginBottom: '20px'}}>
+          <label style={{display: 'block', marginBottom: '5px'}}>Registration Type:</label>
+          <select
+            value={registrationType}
+            onChange={(e) => setRegistrationType(e.target.value)}
+            style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+          >
+            <option value="child">Child Registration</option>
+            <option value="teacher">Teacher Registration</option>
+            <option value="admin">Admin Registration</option>
+          </select>
+        </div>
         <form onSubmit={handleSubmit} style={{maxWidth: '600px', margin: '0 auto', textAlign: 'left'}}>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Child's Name:</label>
-            <input
-              type="text"
-              name="childName"
-              value={formData.childName}
-              onChange={handleChange}
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Child's Age:</label>
-            <input
-              type="number"
-              name="childAge"
-              value={formData.childAge}
-              onChange={handleChange}
-              required
-              min="2"
-              max="5"
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Name:</label>
-            <input
-              type="text"
-              name="parentName"
-              value={formData.parentName}
-              onChange={handleChange}
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Email:</label>
-            <input
-              type="email"
-              name="parentEmail"
-              value={formData.parentEmail}
-              onChange={handleChange}
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Phone:</label>
-            <input
-              type="tel"
-              name="parentPhone"
-              value={formData.parentPhone}
-              onChange={handleChange}
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Address:</label>
-            <textarea
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-              rows="3"
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Emergency Contact:</label>
-            <input
-              type="text"
-              name="emergencyContact"
-              value={formData.emergencyContact}
-              onChange={handleChange}
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Medical Information/Allergies:</label>
-            <textarea
-              name="medicalInfo"
-              value={formData.medicalInfo}
-              onChange={handleChange}
-              rows="3"
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Parent's Identity Document:</label>
-            <input
-              type="file"
-              name="parentId"
-              onChange={handleFileChange}
-              accept=".pdf,.jpg,.jpeg,.png"
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-            {documents.parentId && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.parentId.name}</p>}
-          </div>
-          <div style={{marginBottom: '15px'}}>
-            <label style={{display: 'block', marginBottom: '5px'}}>Child's Birth Certificate:</label>
-            <input
-              type="file"
-              name="childBirthCertificate"
-              onChange={handleFileChange}
-              accept=".pdf,.jpg,.jpeg,.png"
-              required
-              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
-            />
-            {documents.childBirthCertificate && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.childBirthCertificate.name}</p>}
-          </div>
+          {registrationType === 'child' && (
+            <>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Child's Name:</label>
+                <input
+                  type="text"
+                  name="childName"
+                  value={formData.childName}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Child's Age:</label>
+                <input
+                  type="number"
+                  name="childAge"
+                  value={formData.childAge}
+                  onChange={handleChange}
+                  required
+                  min="2"
+                  max="5"
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Name:</label>
+                <input
+                  type="text"
+                  name="parentName"
+                  value={formData.parentName}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Email:</label>
+                <input
+                  type="email"
+                  name="parentEmail"
+                  value={formData.parentEmail}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Phone:</label>
+                <input
+                  type="tel"
+                  name="parentPhone"
+                  value={formData.parentPhone}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Address:</label>
+                <textarea
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                  rows="3"
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Emergency Contact:</label>
+                <input
+                  type="text"
+                  name="emergencyContact"
+                  value={formData.emergencyContact}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Medical Information/Allergies:</label>
+                <textarea
+                  name="medicalInfo"
+                  value={formData.medicalInfo}
+                  onChange={handleChange}
+                  rows="3"
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Parent's Identity Document:</label>
+                <input
+                  type="file"
+                  name="parentId"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+                {documents.parentId && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.parentId.name}</p>}
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Child's Birth Certificate:</label>
+                <input
+                  type="file"
+                  name="childBirthCertificate"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+                {documents.childBirthCertificate && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.childBirthCertificate.name}</p>}
+              </div>
+            </>
+          )}
+          {registrationType === 'teacher' && (
+            <>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Teacher's Name:</label>
+                <input
+                  type="text"
+                  name="teacherName"
+                  value={formData.teacherName || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Email:</label>
+                <input
+                  type="email"
+                  name="teacherEmail"
+                  value={formData.teacherEmail || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Phone:</label>
+                <input
+                  type="tel"
+                  name="teacherPhone"
+                  value={formData.teacherPhone || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Qualifications:</label>
+                <textarea
+                  name="teacherQualifications"
+                  value={formData.teacherQualifications || ''}
+                  onChange={handleChange}
+                  required
+                  rows="3"
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Teacher's Identity Document:</label>
+                <input
+                  type="file"
+                  name="teacherId"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+                {documents.teacherId && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.teacherId.name}</p>}
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Qualifications Document:</label>
+                <input
+                  type="file"
+                  name="teacherQualifications"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+                {documents.teacherQualifications && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.teacherQualifications.name}</p>}
+              </div>
+            </>
+          )}
+          {registrationType === 'admin' && (
+            <>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Admin's Name:</label>
+                <input
+                  type="text"
+                  name="adminName"
+                  value={formData.adminName || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Email:</label>
+                <input
+                  type="email"
+                  name="adminEmail"
+                  value={formData.adminEmail || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Phone:</label>
+                <input
+                  type="tel"
+                  name="adminPhone"
+                  value={formData.adminPhone || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Role/Position:</label>
+                <input
+                  type="text"
+                  name="adminRole"
+                  value={formData.adminRole || ''}
+                  onChange={handleChange}
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+              </div>
+              <div style={{marginBottom: '15px'}}>
+                <label style={{display: 'block', marginBottom: '5px'}}>Admin's Identity Document:</label>
+                <input
+                  type="file"
+                  name="adminId"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  required
+                  style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+                />
+                {documents.adminId && <p style={{fontSize: '0.9rem', color: '#666'}}>Selected: {documents.adminId.name}</p>}
+              </div>
+            </>
+          )}
           <button type="submit" style={{backgroundColor: '#ff5722', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Submit Registration</button>
         </form>
       </header>
