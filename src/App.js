@@ -1,22 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>Welcome to Little Brave Warriors Creche</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Nurturing young minds in a safe, fun, and educational environment.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          We provide quality childcare services for children aged 2-5 years.
+        </p>
       </header>
     </div>
   );
