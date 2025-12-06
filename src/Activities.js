@@ -1,15 +1,34 @@
 import './App.css';
 import { Link } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Activities() {
   const [mathAnswer, setMathAnswer] = useState('');
   const [mathResult, setMathResult] = useState('');
+  const [currentProblem, setCurrentProblem] = useState({ num1: 3, num2: 4, answer: 7 });
   const canvasRef = useRef(null);
+  const [currentDot, setCurrentDot] = useState(0);
+  const [dots, setDots] = useState([]);
+
+  const generateNewProblem = () => {
+    const num1 = Math.floor(Math.random() * 5) + 1; // 1-5
+    const num2 = Math.floor(Math.random() * 5) + 1; // 1-5
+    const answer = num1 + num2;
+    setCurrentProblem({ num1, num2, answer });
+    setMathAnswer('');
+    setMathResult('');
+  };
+
+  useEffect(() => {
+    generateNewProblem();
+  }, []);
 
   const checkMath = () => {
-    if (parseInt(mathAnswer) === 7) {
-      setMathResult('🎉 Correct! 3 + 4 = 7');
+    if (parseInt(mathAnswer) === currentProblem.answer) {
+      setMathResult(`🎉 Correct! ${currentProblem.num1} + ${currentProblem.num2} = ${currentProblem.answer}`);
+      setTimeout(() => {
+        generateNewProblem();
+      }, 2000);
     } else {
       setMathResult('❌ Try again! Hint: Count on your fingers!');
     }
@@ -88,7 +107,7 @@ function Activities() {
           <div style={{background: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
             <h2>🧮 Math Time!</h2>
             <p>Let's do some simple addition!</p>
-            <p style={{fontSize: '2rem'}}>3 + 4 = ?</p>
+            <p style={{fontSize: '2rem'}}>{currentProblem.num1} + {currentProblem.num2} = ?</p>
             <input
               type="number"
               value={mathAnswer}
