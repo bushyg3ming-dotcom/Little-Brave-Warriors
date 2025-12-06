@@ -6,6 +6,7 @@ import Teachers from './Teachers';
 import Streaming from './Streaming';
 import Contact from './Contact';
 import Activities from './Activities';
+import Registration from './Registration';
 
 function Home() {
   return (
