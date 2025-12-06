@@ -69,6 +69,7 @@ function App() {
       <Route path="/streaming" element={<Streaming />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/activities" element={<Activities />} />
+      <Route path="/registration" element={<Registration />} />
     </Routes>
   );
 }
