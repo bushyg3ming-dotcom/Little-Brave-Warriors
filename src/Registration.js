@@ -118,3 +118,64 @@ function Registration() {
             />
           </div>
           <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Email:</label>
+            <input
+              type="email"
+              name="parentEmail"
+              value={formData.parentEmail}
+              onChange={handleChange}
+              required
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+          </div>
+          <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Parent/Guardian Phone:</label>
+            <input
+              type="tel"
+              name="parentPhone"
+              value={formData.parentPhone}
+              onChange={handleChange}
+              required
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+          </div>
+          <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Address:</label>
+            <textarea
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+              rows="3"
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+          </div>
+          <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Emergency Contact:</label>
+            <input
+              type="text"
+              name="emergencyContact"
+              value={formData.emergencyContact}
+              onChange={handleChange}
+              required
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+          </div>
+          <div style={{marginBottom: '15px'}}>
+            <label style={{display: 'block', marginBottom: '5px'}}>Medical Information/Allergies:</label>
+            <textarea
+              name="medicalInfo"
+              value={formData.medicalInfo}
+              onChange={handleChange}
+              rows="3"
+              style={{width: '100%', padding: '8px', fontSize: '1rem'}}
+            />
+          </div>
+          <button type="submit" style={{backgroundColor: '#ff5722', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer'}}>Submit Registration</button>
+        </form>
+      </header>
+    </div>
+  );
+}
+
+export default Registration;
