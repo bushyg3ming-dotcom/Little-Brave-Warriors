@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
 import Announcements from './Announcements';
+import Events from './Events';
 
 function Home() {
   return (
