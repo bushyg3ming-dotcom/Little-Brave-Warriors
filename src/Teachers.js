@@ -27,20 +27,24 @@ function Teachers() {
         <div style={{maxWidth: '900px', textAlign: 'center'}}>
           <p>Our dedicated team of educators brings creativity, passion, and expertise to nurturing young minds every day! 🌟</p>
           <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', marginTop: '30px'}}>
-            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px'}}>
-              <h3>👩‍🏫 Camy Fourie</h3>
+            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px', textAlign: 'center'}}>
+              <img src="https://via.placeholder.com/100x100/FF69B4/FFFFFF?text=Camy" alt="Camy Fourie" style={{borderRadius: '50%', marginBottom: '10px'}} />
+              <h3>Camy Fourie</h3>
               <p>Our creative director who turns every day into an art adventure! 🎨 With her magical storytelling and craft expertise, Camy inspires little imaginations to soar.</p>
             </div>
-            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px'}}>
-              <h3>👨‍🏫 Warren Fourie</h3>
+            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px', textAlign: 'center'}}>
+              <img src="https://via.placeholder.com/100x100/32CD32/FFFFFF?text=Warren" alt="Warren Fourie" style={{borderRadius: '50%', marginBottom: '10px'}} />
+              <h3>Warren Fourie</h3>
               <p>The adventure master! 🏃‍♂️ Warren brings outdoor fun and physical activities that build strong bodies and brave spirits. His energy is contagious!</p>
             </div>
-            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px'}}>
-              <h3>👩‍🎓 Teacher Thando</h3>
+            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px', textAlign: 'center'}}>
+              <img src="https://via.placeholder.com/100x100/FFFF00/000000?text=Thando" alt="Teacher Thando" style={{borderRadius: '50%', marginBottom: '10px'}} />
+              <h3>Teacher Thando</h3>
               <p>Our music and rhythm expert! 🎵🎶 Teacher Thando fills the room with songs and dances that make learning numbers and letters unforgettable and joyful.</p>
             </div>
-            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px'}}>
-              <h3>👩‍🎤 Teacher Lala</h3>
+            <div style={{background: 'rgba(255, 255, 255, 0.8)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', minWidth: '250px', textAlign: 'center'}}>
+              <img src="https://via.placeholder.com/100x100/FF4500/FFFFFF?text=Lala" alt="Teacher Lala" style={{borderRadius: '50%', marginBottom: '10px'}} />
+              <h3>Teacher Lala</h3>
               <p>The heart of our classroom! ❤️ Teacher Lala specializes in emotional development and kindness, teaching our brave warriors the power of friendship and empathy.</p>
             </div>
           </div>
