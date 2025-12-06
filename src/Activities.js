@@ -112,8 +112,12 @@ function Activities() {
                   onDrop={(e) => {
                     e.preventDefault();
                     const pieceId = e.dataTransfer.getData('piece');
-                    if (pieceId === 'eye1') {
-                      setPlacedPieces([...placedPieces, 'eye1']);
+                    if (pieceId === 'eye1' && !placedPieces.includes('eye1')) {
+                      const newPlaced = [...placedPieces, 'eye1'];
+                      setPlacedPieces(newPlaced);
+                      if (newPlaced.length === 3) {
+                        setTimeout(() => setPlacedPieces([]), 3000);
+                      }
                     }
                   }}
                 ></div>
@@ -133,8 +137,12 @@ function Activities() {
                   onDrop={(e) => {
                     e.preventDefault();
                     const pieceId = e.dataTransfer.getData('piece');
-                    if (pieceId === 'eye2') {
-                      setPlacedPieces([...placedPieces, 'eye2']);
+                    if (pieceId === 'eye2' && !placedPieces.includes('eye2')) {
+                      const newPlaced = [...placedPieces, 'eye2'];
+                      setPlacedPieces(newPlaced);
+                      if (newPlaced.length === 3) {
+                        setTimeout(() => setPlacedPieces([]), 3000);
+                      }
                     }
                   }}
                 ></div>
