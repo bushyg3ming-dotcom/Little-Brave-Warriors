@@ -5,6 +5,7 @@ import Events from './Events';
 import Teachers from './Teachers';
 import Streaming from './Streaming';
 import Contact from './Contact';
+import Activities from './Activities';
 
 function Home() {
   return (
@@ -15,7 +16,8 @@ function Home() {
           <Link to="/events" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Events</Link>
           <Link to="/teachers" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Teachers</Link>
           <Link to="/streaming" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Streaming</Link>
-          <Link to="/contact" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Contact</Link>
+          <Link to="/contact" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem', marginRight: '10px'}}>Contact</Link>
+          <Link to="/activities" style={{color: '#ff5722', textDecoration: 'none', fontSize: '1.2rem'}}>Activities</Link>
         </nav>
         <div className="background-emojis">
           <span style={{position: 'absolute', top: '10%', left: '15%', fontSize: '4rem', opacity: 0.2}}>🖍️</span>
@@ -53,6 +55,7 @@ function App() {
       <Route path="/teachers" element={<Teachers />} />
       <Route path="/streaming" element={<Streaming />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/activities" element={<Activities />} />
     </Routes>
   );
 }
