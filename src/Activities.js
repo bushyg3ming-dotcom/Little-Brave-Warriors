@@ -41,41 +41,41 @@ function Activities() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   };
 
-  const startColoring = () => {
+  const startPuzzle = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw a simple flower
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
+    // Define dots for a simple house shape
+    const houseDots = [
+      { x: 50, y: 200, num: 1 },   // bottom left
+      { x: 250, y: 200, num: 2 },  // bottom right
+      { x: 250, y: 100, num: 3 },  // top right
+      { x: 150, y: 50, num: 4 },   // roof peak
+      { x: 50, y: 100, num: 5 },   // top left
+      { x: 50, y: 200, num: 6 }    // back to start
+    ];
 
-    // Stem
-    ctx.beginPath();
-    ctx.moveTo(150, 200);
-    ctx.lineTo(150, 100);
-    ctx.stroke();
+    setDots(houseDots);
+    setCurrentDot(0);
 
-    // Leaves
-    ctx.beginPath();
-    ctx.ellipse(140, 150, 10, 5, 0, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.ellipse(160, 130, 10, 5, 0, 0, Math.PI * 2);
-    ctx.stroke();
+    // Draw dots and numbers
+    ctx.fillStyle = 'black';
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
 
-    // Petals
-    for (let i = 0; i < 6; i++) {
+    houseDots.forEach(dot => {
+      // Draw dot
       ctx.beginPath();
-      ctx.ellipse(150 + Math.cos(i * Math.PI / 3) * 20, 80 + Math.sin(i * Math.PI / 3) * 20, 15, 25, i * Math.PI / 3, 0, Math.PI * 2);
-      ctx.stroke();
-    }
+      ctx.arc(dot.x, dot.y, 8, 0, Math.PI * 2);
+      ctx.fill();
 
-    // Center
-    ctx.beginPath();
-    ctx.arc(150, 80, 10, 0, Math.PI * 2);
-    ctx.stroke();
+      // Draw number
+      ctx.fillStyle = 'white';
+      ctx.fillText(dot.num.toString(), dot.x, dot.y + 5);
+      ctx.fillStyle = 'black';
+    });
   };
 
   return (
@@ -131,29 +131,61 @@ function Activities() {
             </div>
           </div>
 
-          {/* Coloring Section */}
+          {/* Puzzle Section */}
           <div style={{background: 'rgba(255, 255, 255, 0.9)', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)'}}>
-            <h2>🎨 Coloring Time!</h2>
-            <p>Click "Start Coloring" to draw a flower, then use your mouse to color it!</p>
+            <h2>🧩 Connect the Dots Puzzle!</h2>
+            <p>Click "Start Puzzle" to begin, then click on the dots in order from 1 to 6 to draw a house!</p>
             <canvas
               ref={canvasRef}
               width="300"
               height="250"
-              style={{border: '2px solid #333', borderRadius: '5px', cursor: 'crosshair', display: 'block', margin: '0 auto'}}
+              style={{border: '2px solid #333', borderRadius: '5px', cursor: 'pointer', display: 'block', margin: '0 auto'}}
               onMouseDown={(e) => {
+                if (dots.length === 0) return;
+
                 const canvas = canvasRef.current;
                 const ctx = canvas.getContext('2d');
                 const rect = canvas.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, Math.PI * 2);
-                ctx.fillStyle = 'red';
-                ctx.fill();
+
+                // Check if clicked on the next dot
+                const nextDot = dots[currentDot];
+                const distance = Math.sqrt((x - nextDot.x) ** 2 + (y - nextDot.y) ** 2);
+
+                if (distance < 15) { // Within click radius
+                  // Draw line from previous dot if not first
+                  if (currentDot > 0) {
+                    const prevDot = dots[currentDot - 1];
+                    ctx.strokeStyle = 'blue';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(prevDot.x, prevDot.y);
+                    ctx.lineTo(nextDot.x, nextDot.y);
+                    ctx.stroke();
+                  }
+
+                  // Mark dot as completed
+                  ctx.fillStyle = 'green';
+                  ctx.beginPath();
+                  ctx.arc(nextDot.x, nextDot.y, 8, 0, Math.PI * 2);
+                  ctx.fill();
+
+                  // Move to next dot
+                  if (currentDot < dots.length - 1) {
+                    setCurrentDot(currentDot + 1);
+                  } else {
+                    // Puzzle complete!
+                    ctx.fillStyle = 'red';
+                    ctx.font = '20px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('🎉 Great Job! 🎉', 150, 30);
+                  }
+                }
               }}
             ></canvas>
             <div style={{marginTop: '10px'}}>
-              <button onClick={startColoring} style={{background: '#4CAF50', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px'}}>Start Coloring</button>
+              <button onClick={startPuzzle} style={{background: '#4CAF50', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer', marginRight: '10px'}}>Start Puzzle</button>
               <button onClick={clearCanvas} style={{background: '#f44336', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '5px', cursor: 'pointer'}}>Clear</button>
             </div>
           </div>
